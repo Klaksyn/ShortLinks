@@ -1,23 +1,12 @@
 package com.syneation.shortlinks.controllers.account.links.helpers;
 
-import jakarta.servlet.http.HttpServletRequest;
-
-import java.util.Locale;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class HelperLink {
 
     private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    public static String generateLink(final String protocol,
-                                      final HttpServletRequest request,
-                                      final int len) {
-        if (!"http".equals(protocol) && !"https".equals(protocol)) {
-            return "[ERROR] please change protocol to http or https";
-        }
-
-        String currentProtocol = protocol + "://";
+    public static String generateLink(final int len) {
 
         ThreadLocalRandom random = ThreadLocalRandom.current();
         StringBuilder sb = new StringBuilder();
@@ -27,8 +16,7 @@ public class HelperLink {
             sb.append(ALPHABET.charAt(rndIndex));
         }
 
-        return currentProtocol + request.getServerName() + "/" +
-                sb.toString();
+        return sb.toString();
     }
 
 }

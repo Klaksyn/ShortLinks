@@ -65,7 +65,7 @@ public class CreateLinksController {
             return "redirect:/profile/links/new";
         }
 
-        String new_link = HelperLink.generateLink("http", request, 14);
+        String new_link = HelperLink.generateLink(14);
 
         try {
             Links newLinks = new Links();
@@ -82,7 +82,8 @@ public class CreateLinksController {
 
             redirectAttributes.addFlashAttribute("linksDto",
                     new LinksDto());
-            redirectAttributes.addFlashAttribute("new_link", new_link);
+            String newLink = request.getServerName() + "/" + new_link;
+            redirectAttributes.addFlashAttribute("new_link", newLink);
             redirectAttributes.addFlashAttribute("name",
                     userPrincipal.getUsername());
             redirectAttributes.addFlashAttribute("success",
