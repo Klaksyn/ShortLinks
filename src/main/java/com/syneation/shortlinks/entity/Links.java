@@ -18,6 +18,8 @@ public class Links {
     private String original_link;
     private String new_link;
 
+    private Long clicks;
+
     private Date created_at;
     private Date updated_at;
 
@@ -51,6 +53,14 @@ public class Links {
 
     public void setNew_link(String new_link) {
         this.new_link = new_link;
+    }
+
+    public void setClicks(Long clicks) {
+        this.clicks = clicks;
+    }
+
+    public Long getClicks() {
+        return clicks;
     }
 
     public Date getCreated_at() {
