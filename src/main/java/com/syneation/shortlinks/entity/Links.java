@@ -18,7 +18,7 @@ public class Links {
     private String original_link;
     private String new_link;
 
-    private Long clicks;
+    private Long clicks = 0L;
 
     private Date created_at;
     private Date updated_at;
