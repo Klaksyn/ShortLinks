@@ -61,6 +61,7 @@
           <th>оригинальная ссылка</th>
           <th>новая ссылка</th>
           <th>количество переходов</th>
+          <th>действие</th>
         </tr>
       </thead>
       <tbody>
@@ -89,6 +90,16 @@
             1
           </td>
 
+          <form th:action="@{/profile/links/manage}" method="post">
+            <td type="submit" class="text-center">
+              <button class="btn btn-warning" value="unactivate" name="unactivate">
+                Деактивировать
+              </button>
+              <button class="btn btn-danger" value="delete" name="action">
+                Удалить
+              </button>
+            </td>
+          </form>
         </tr>
       </tbody>
     </table>

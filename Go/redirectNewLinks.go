@@ -15,6 +15,7 @@ import (
 )
 
 func main() {
+
 	database.Connect()
 	defer func(Db *sql.DB) {
 		err := Db.Close()

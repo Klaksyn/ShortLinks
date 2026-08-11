@@ -17,4 +17,5 @@ func UpdateClicks(id int64) bool {
 	}
 
 	return true
+
 }
