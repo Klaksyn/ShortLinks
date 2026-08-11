@@ -12,7 +12,7 @@ public class Links {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "creator_id", nullable = false)
     private Users creator;
 
     private String original_link;

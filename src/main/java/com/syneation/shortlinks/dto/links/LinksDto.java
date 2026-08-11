@@ -1,6 +1,5 @@
 package com.syneation.shortlinks.dto.links;
 
-import com.syneation.shortlinks.entity.Users;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 

@@ -49,9 +49,50 @@
     </div>
   </div>
 
-  <table class="table table-dark table-hover">
+  <div class="flex-grow-1">
+    <div th:if="${#lists.isEmpty(linksList)}">
+      <h1 class="text-center">У вас нету ссылок</h1>
+    </div>
 
-  </table>
+    <table class="table table-dark table-hover"
+           th:if="${not #lists.isEmpty(linksList)}">
+      <thead>
+        <tr class="text-center">
+          <th>оригинальная ссылка</th>
+          <th>новая ссылка</th>
+          <th>количество переходов</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="link : ${linksList}">
+
+          <td>
+            <a class="btn btn-link p-0 text-decoration-none"
+               target="_blank"
+               th:href="${link.original_link}"
+               th:text="${link.original_link}">
+              original
+            </a>
+          </td>
+
+          <td>
+            <a class="btn btn-link text-decoration-none"
+              th:href="'http://localhost:8081/' + ${link.new_link}"
+              target="_blank">
+              <i class="bi bi-box-arrow-up-right me-1"></i>
+              <span th:text="'http://localhost:8081/' + ${link.new_link}">server</span>
+            </a>
+          </td>
+
+          <td class="text-center fw-bold text-secondary"
+              th:text="${link.clicks}">
+            1
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

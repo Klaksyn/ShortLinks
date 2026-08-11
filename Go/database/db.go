@@ -29,5 +29,5 @@ func Connect() {
 	if err = DB.Ping(); err != nil {
 		log.Fatalf("[ERROR] The database is unavailable: %v ", err)
 	}
-	fmt.Println("[SUCCESS] Connect to BD successfuly!")
+	fmt.Println("[SUCCESS] Connect to BD successfully!")
 }
