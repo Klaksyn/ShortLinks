@@ -9,9 +9,9 @@ import com.syneation.shortlinks.entity.Links;
 import com.syneation.shortlinks.entity.Users;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.hibernate.id.uuid.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +28,7 @@ public class CreateLinksController {
     @Autowired
     private LinksRepository linksRepo;
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepo;
 
     @GetMapping("/profile/links/new")
     public String createLinkPage(
@@ -57,6 +57,10 @@ public class CreateLinksController {
             RedirectAttributes redirectAttributes)
     {
 
+        if (userPrincipal == null) {
+            return "redirect:/login";
+        }
+
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("error",
                     "Неизвестная Ошибка!");
@@ -68,14 +72,13 @@ public class CreateLinksController {
         String new_link = HelperLink.generateLink(14);
 
         try {
+            Users user = userPrincipal.getUsers();
             Links newLinks = new Links();
+
             newLinks.setOriginal_link(linksDto.getOriginal_link());
             newLinks.setNew_link(new_link);
             newLinks.setCreated_at(new Date());
             newLinks.setUpdated_at(new Date());
-
-            Users user = userRepository.findById(linksDto.getCreator())
-                    .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
             newLinks.setCreator(user);
 
             linksRepo.save(newLinks);
