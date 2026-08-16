@@ -23,6 +23,7 @@ public class SecurityConfig {
                         .requestMatchers("/main_pages/**").permitAll()
                         .requestMatchers("/register").not().authenticated()
                         .requestMatchers("/login").not().authenticated()
+                        .requestMatchers("/logout").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
