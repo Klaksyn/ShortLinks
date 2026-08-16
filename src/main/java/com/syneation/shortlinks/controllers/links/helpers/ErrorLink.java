@@ -1,4 +1,8 @@
 package com.syneation.shortlinks.controllers.links.helpers;
 
-public enum Error {
+public enum ErrorLink {
+    activate,
+    deactivate,
+    delete
 }
+

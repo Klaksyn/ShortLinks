@@ -1,7 +1,7 @@
 package com.syneation.shortlinks.Security;
 
-import com.syneation.shortlinks.entity.Users;
-import org.jspecify.annotations.Nullable;
+import com.syneation.shortlinks.controllers.user.Users;
+import com.syneation.shortlinks.controllers.user.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +19,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_" + users.getRole()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + users.getRole().name()));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class UserPrincipal implements UserDetails {
         return users;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return users.getRole();
     }
 }

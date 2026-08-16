@@ -1,7 +1,7 @@
-package com.syneation.shortlinks.Repository;
+package com.syneation.shortlinks.controllers.auth;
 
 
-import com.syneation.shortlinks.entity.Users;
+import com.syneation.shortlinks.controllers.user.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

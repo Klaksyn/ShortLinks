@@ -1,4 +1,4 @@
-package com.syneation.shortlinks.entity;
+package com.syneation.shortlinks.controllers.user;
 
 import jakarta.persistence.*;
 
@@ -26,7 +26,10 @@ public class Users {
     @Column(unique = true, nullable = true)
     private String phone;
     private String password;
-    private String role;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     private Date createdAt;
     private Date updatedAt;
 
@@ -86,11 +89,11 @@ public class Users {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

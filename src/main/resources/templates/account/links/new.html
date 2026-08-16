@@ -75,17 +75,33 @@
 
                 <form th:action="@{/profile/links/new}" method="post"
                     th:object="${linksDto}">
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                        <ul class="mb-0">
+                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+
                     <h5 class="mb-3">Сократить новую ссылку:</h5>
                     <input type="hidden" name="creator" th:value="${currentId}" />
                     <div class="input-group mb-3 col-lg-8">
                         <input type="text" class="form-control"
                                placeholder="Вставьте длинный URL (например, https://example.com)..."
-                                th:field="*{original_link}"/>
+                                th:field="*{original_link}" required/>
+
+                        <input type="number" class="form-control" id="inputLenUrl"
+                               min="6" max="12"
+                               placeholder="введите длину (мин 6)" th:field="*{lenUrl}" />
+
                         <button type="submit" class="btn btn-info">Создать</button>
                     </div>
                 </form>
                 <input type="text" class="form-control" placeholder="Вывод"
                        th:value="${new_link}" disabled />
+             
+
+                <script th:if="${new_link != null}">
+                    document.getElementById('inputLenUrl').value = '';
+                </script>
             </div>
 
         </div>

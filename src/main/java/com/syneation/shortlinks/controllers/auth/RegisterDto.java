@@ -1,4 +1,4 @@
-package com.syneation.shortlinks.dto.auth;
+package com.syneation.shortlinks.controllers.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

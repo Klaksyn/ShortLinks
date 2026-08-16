@@ -1,5 +1,6 @@
-package com.syneation.shortlinks.entity;
+package com.syneation.shortlinks.controllers.links.model;
 
+import com.syneation.shortlinks.controllers.user.Users;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -19,6 +20,7 @@ public class Links {
     private String new_link;
 
     private Long clicks = 0L;
+    private boolean isActive = true;
 
     private Date created_at;
     private Date updated_at;
@@ -61,6 +63,14 @@ public class Links {
 
     public Long getClicks() {
         return clicks;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
     }
 
     public Date getCreated_at() {

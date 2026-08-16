@@ -1,7 +1,6 @@
-package com.syneation.shortlinks.Service;
+package com.syneation.shortlinks.controllers.auth;
 
-import com.syneation.shortlinks.Repository.UserRepository;
-import com.syneation.shortlinks.entity.Users;
+import com.syneation.shortlinks.controllers.user.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

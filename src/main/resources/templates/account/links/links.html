@@ -50,6 +50,20 @@
   </div>
 
   <div class="flex-grow-1">
+    <div th:if="${error}"
+         class="alert alert-danger alert-dismissible fade show text-center mb-4"
+         role="alert">
+      <span th:text="${error}">error</span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div th:if="${success}"
+         class="alert alert-success alert-dismissible fade show text-center mb-4"
+         role="alert">
+      <span th:text="${success}">success</span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <div th:if="${#lists.isEmpty(linksList)}">
       <h1 class="text-center">У вас нету ссылок</h1>
     </div>
@@ -66,7 +80,6 @@
       </thead>
       <tbody>
         <tr th:each="link : ${linksList}">
-
           <td>
             <a class="btn btn-link p-0 text-decoration-none"
                target="_blank"
@@ -90,16 +103,24 @@
             1
           </td>
 
-          <form th:action="@{/profile/links/manage}" method="post">
-            <td type="submit" class="text-center">
-              <button class="btn btn-warning" value="unactivate" name="unactivate">
+          <td class="text-center">
+            <form th:action="@{/profile/links/manager}" method="post" class="d-line"
+                  onsubmit="return confirm('вы уверены совершить действие?')">
+              <input type="hidden" name="idLink" th:value="${link.id}" />
+
+              <button type="submit" th:if="${link.isActive}" class="btn btn-warning" name="action" value="deactivate">
                 Деактивировать
               </button>
-              <button class="btn btn-danger" value="delete" name="action">
+              <button type="submit" th:if="!${link.isActive}" class="btn btn-secondary"
+                      name="action" value="activate">
+                Активировать
+              </button>
+
+              <button class="btn btn-danger" name="action" value="delete">
                 Удалить
               </button>
-            </td>
-          </form>
+            </form>
+          </td>
         </tr>
       </tbody>
     </table>
